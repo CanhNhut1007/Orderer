@@ -10,7 +10,7 @@ RUN mkdir -p /var/hyperledger/OrdererOrg
 ENV FABRIC_CFG_PATH=/var/hyperledger/OrdererOrg
 
 #3. Copy the crypto for orderer
-COPY ./config-org/Orderer/orderer /var/hyperledger/OrdererOrg
+COPY ./config-org/Orderer/orderer2 /var/hyperledger/OrdererOrg
 
 ENV ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/OrdererOrg/msp
 
@@ -18,6 +18,6 @@ ENV ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/OrdererOrg/msp
 COPY genesis.block  /var/hyperledger/OrdererOrg
 
 #5. Copy the orderer YAML
-COPY ./config-org/Orderer/orderer.yaml /var/hyperledger/OrdererOrg 
+COPY ./config-org/Orderer/orderer2/orderer.yaml /var/hyperledger/OrdererOrg 
 
 CMD ["orderer"]

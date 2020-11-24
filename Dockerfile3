@@ -1,23 +1,23 @@
-# Updated to Fabric 2.x
-#1. Docker file for setting up the Orderer
-# FROM hyperledger/fabric-orderer:1.4.2
-FROM hyperledger/fabric-ca-orderer:latest
+FROM hyperledger/fabric-orderer:2.3
 
 LABEL  maintainer="Thach Canh Nhut"
 
 #2. Create the folder for configurations
-RUN mkdir -p /var/hyperledger/config
+RUN rm -r /etc/hyperledger/fabric
+
+RUN mkdir -p /var/hyperledger/OrdererOrg
+
+ENV FABRIC_CFG_PATH=/var/hyperledger/OrdererOrg
 
 #3. Copy the crypto for orderer
-COPY ./config/crypto-config/ordererOrganizations/healthcare.tech/orderers/orderer.healthcare.tech /var/hyperledger/orderer.healthcare.tech
+COPY ./config-org/Orderer/orderer3 /var/hyperledger/OrdererOrg
+
+ENV ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/OrdererOrg/msp
 
 #4. Copy the genesis file
-COPY ./config/healthcare-genesis.block  /var/hyperledger/config/healthcare-genesis.block
+COPY genesis.block  /var/hyperledger/OrdererOrg
 
 #5. Copy the orderer YAML
-COPY ./config/orderer/orderer.yaml /var/hyperledger/config/orderer.yaml
+COPY ./config-org/Orderer/orderer3/orderer.yaml /var/hyperledger/OrdererOrg 
 
-COPY /bin/fabric-ca-client /usr/local/bin
-
-#6. Launch the Orderer
-CMD orderer
+CMD ["orderer"]

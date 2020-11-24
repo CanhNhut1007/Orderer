@@ -125,12 +125,12 @@ Orderer: &OrdererDefaults
             ClientTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
             ServerTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
 
-          - Host: healthcare-orderer-2-clusterip
+          - Host: healthcare-orderer2-clusterip
             Port: 31750
             ClientTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem
             ServerTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem            
         
-          - Host: healthcare-orderer-3-clusterip
+          - Host: healthcare-orderer3-clusterip
             Port: 32750
             ClientTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem
             ServerTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem   
